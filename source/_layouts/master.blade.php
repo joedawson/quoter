@@ -9,18 +9,20 @@
     <body class="font-sans antialiased">
         @hasSection('header')
             <header class="bg-blue-500 text-white pt-12 pb-6 px-8">
-                <div class="container">
+                <div class="max-w-2xl mx-auto">
                     @yield('header')
                 </div>
             </header>
         @endif
 
         <div class="p-8">
-            @yield('body')
+            <div class="max-w-2xl mx-auto">
+                @yield('body')
+            </div>
         </div>
 
-        <footer class="py-6 mx-8 border-t">
-            <div class="container">
+        <footer class="px-8">
+            <div class="max-w-2xl mx-auto border-t py-6">
                 <a href="https://joedawson.me">joedawson.me</a>
             </div>
         </footer>
