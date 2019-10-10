@@ -6,7 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="assets/build/css/main.css">
     </head>
-    <body>
+    <body class="font-sans antialiased">
         @hasSection('header')
             <header class="bg-blue-500 text-white pt-12 pb-6 px-8">
                 <div class="container">
