@@ -34,9 +34,8 @@ class GeneratePDF
             $pages->each(function($page) use ($destination)
             {
                 $pdf = new Dompdf();
-
+                $pdf->setBasePath($destination);
                 $pdf->loadHtml(file_get_contents($destination . '/' . $page));
-
                 $pdf->render();
 
                 return file_put_contents(
