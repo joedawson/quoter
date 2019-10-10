@@ -19,12 +19,10 @@
             @yield('body')
         </div>
 
-        @hasSection('footer')
-            <footer class="py-6 mx-8 border-t">
-                <div class="container">
-                    @yield('footer')
-                </div>
-            </footer>
-        @endif
+        <footer class="py-6 mx-8 border-t">
+            <div class="container">
+                <a href="https://joedawson.me">joedawson.me</a>
+            </div>
+        </footer>
     </body>
 </html>
