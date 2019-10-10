@@ -1,12 +1,9 @@
 <?php
 
 use TightenCo\Jigsaw\Jigsaw;
+use App\Listeners\GeneratePDF;
 
 /** @var $container \Illuminate\Container\Container */
 /** @var $events \TightenCo\Jigsaw\Events\EventBus */
 
-$events->afterBuild(function (Jigsaw $jigsaw) {
-    // we need to take the HTML at this point
-    // generate a PDF
-    // profit!
-});
+$events->afterBuild(GeneratePDF::class);
