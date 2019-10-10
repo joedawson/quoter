@@ -20,4 +20,4 @@ Adding some Markdown files and creating a PDF for a quote straight away would be
 - [ ] Customiseable templates (cover, header, footer etc.) using blade and front end framework of choice (tailwind default)
 - [ ] Make use of variables where possible (like Jigsaw's [site variables](https://jigsaw.tighten.co/docs/site-variables/))
 - [X] Output to default to PDF, HTML output would also be great if you wanted to upload it somewhere (for whatever reason - not sure yet)
-- [X] Offer functionality to offload HTML version to Netlify?
+- [X] Offer functionality to offload HTML version to Netlify? [View demo](https://quoter-demo.netlify.com/)
