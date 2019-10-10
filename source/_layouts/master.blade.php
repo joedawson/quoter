@@ -7,6 +7,24 @@
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
     </head>
     <body>
-        @yield('body')
+        @hasSection('header')
+            <header class="bg-blue-500 text-white pt-8 pb-6 px-6">
+                <div class="container">
+                    @yield('header')
+                </div>
+            </header>
+        @endif
+
+        <div class="py-8 px-6">
+            @yield('body')
+        </div>
+
+        @hasSection('footer')
+            <footer class="p-6">
+                <div class="container">
+                    @yield('footer')
+                </div>
+            </footer>
+        @endif
     </body>
 </html>
