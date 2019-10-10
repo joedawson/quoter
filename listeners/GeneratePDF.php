@@ -13,6 +13,11 @@ class GeneratePDF
 
     public function handle(Jigsaw $jigsaw)
     {
+        if($jigsaw->getEnvironment() !== 'production')
+        {
+            return;
+        }
+
         $destination = $jigsaw->getDestinationPath();
 
         $pages = collect(scandir($destination))->reject(function($path) {
