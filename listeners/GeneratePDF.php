@@ -21,17 +21,25 @@ class GeneratePDF
 
         if($pages->count())
         {
-            $pdf = new Dompdf();
+            if(!file_exists($destination . '/pdfs'))
+            {
+                mkdir($destination . '/pdfs');
+            }
 
-            $pages->each(function($page) use ($pdf, $destination) {
-                return $pdf->loadHtml(file_get_contents($destination . '/' . $page));
+            $pages->each(function($page) use ($destination)
+            {
+                $pdf = new Dompdf();
+
+                $pdf->loadHtml(file_get_contents($destination . '/' . $page));
+
+                $pdf->render();
+
+                $output = $pdf->output();
+
+                var_dump(basename($page));
+
+                return file_put_contents($destination . '/pdfs/' . basename($page, '.html') . '.pdf', $output);
             });
-
-            $pdf->render();
-
-            $output = $pdf->output();
-
-            file_put_contents($destination . '/' . 'file.pdf', $output);
         }
     }
 
