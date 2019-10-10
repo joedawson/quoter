@@ -20,7 +20,7 @@
         </div>
 
         @hasSection('footer')
-            <footer class="py-6 px-8">
+            <footer class="py-6 mx-8 border-t">
                 <div class="container">
                     @yield('footer')
                 </div>
