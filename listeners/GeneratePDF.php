@@ -41,8 +41,6 @@ class GeneratePDF
 
                 $output = $pdf->output();
 
-                var_dump(basename($page));
-
                 return file_put_contents($destination . '/pdfs/' . basename($page, '.html') . '.pdf', $output);
             });
         }
