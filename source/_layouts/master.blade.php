@@ -8,19 +8,19 @@
     </head>
     <body>
         @hasSection('header')
-            <header class="bg-blue-500 text-white pt-8 pb-6 px-6">
+            <header class="bg-blue-500 text-white pt-12 pb-6 px-8">
                 <div class="container">
                     @yield('header')
                 </div>
             </header>
         @endif
 
-        <div class="py-8 px-6">
+        <div class="p-8">
             @yield('body')
         </div>
 
         @hasSection('footer')
-            <footer class="p-6">
+            <footer class="py-6 px-8">
                 <div class="container">
                     @yield('footer')
                 </div>
