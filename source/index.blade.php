@@ -1,7 +1,7 @@
 @extends('_layouts.master')
 
 @section('header')
-    <h1 class="text-2xl">Introduction</h1>
+    <h1 class="text-2xl">Cover</h1>
 @endsection
 
 @section('body')
