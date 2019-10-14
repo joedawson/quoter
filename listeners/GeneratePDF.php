@@ -7,47 +7,37 @@ use TightenCo\Jigsaw\Jigsaw;
 
 class GeneratePDF
 {
-    protected $exclude = [
-        '.', '..', 'assets'
-    ];
-
     public function handle(Jigsaw $jigsaw)
     {
-        if($jigsaw->getEnvironment() !== 'production')
-        {
-            return;
-        }
+        if($jigsaw->getEnvironment() !== 'production') return;
 
-        $destination = $jigsaw->getDestinationPath();
-
-        $pages = collect(scandir($destination))->reject(function($path) {
+        $pages = collect($jigsaw->getOutputPaths())->reject(function($path) {
             return $this->isExcluded($path);
+        })->map(function($path) {
+            return $path . '/index.html';
         });
 
         if($pages->count())
         {
-            if(!file_exists($destination . '/pdfs'))
-            {
-                mkdir($destination . '/pdfs');
-            }
+            $destination = $jigsaw->getDestinationPath();
 
-            $pages->each(function($page) use ($destination)
-            {
-                $pdf = new Dompdf();
-                $pdf->setBasePath($destination);
-                $pdf->loadHtml(file_get_contents($destination . '/' . $page));
-                $pdf->render();
+            $pdf = new Dompdf();
 
-                return file_put_contents(
-                    $destination . '/pdfs/' . basename($page, '.html') . '.pdf',
-                    $pdf->output()
-                );
+            $pdf->setBasePath($destination);
+
+            $pages->each(function($page) use ($pdf, $destination, $jigsaw)
+            {
+                $pdf->loadHtml($jigsaw->readOutputFile($page));
             });
+
+            $pdf->render();
+
+            return file_put_contents($destination . '/build.pdf', $pdf->output());
         }
     }
 
     public function isExcluded($path)
     {
-        return str_is($this->exclude, $path);
+        return starts_with($path, '/assets');
     }
 }
