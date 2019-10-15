@@ -2,6 +2,6 @@
 
 return [
     'production' => false,
-    'baseUrl' => '',
+    'baseUrl' => 'http://quoter.valet',
     'collections' => [],
 ];
