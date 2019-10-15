@@ -18,7 +18,7 @@ mix.webpackConfig({
     ]
 });
 
-mix.sass('source/_assets/sass/main.scss', 'css/main.css')
+mix.sass('source/_assets/sass/app.scss', 'css/app.css')
   .options({
     processCssUrls: false,
     postCss: [ tailwindcss() ],
