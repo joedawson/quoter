@@ -51,13 +51,10 @@ class GeneratePDF
             // Close off the output...
             $html .= '</body></html>';
 
-            // Prepare the destination...
-            $destination = $jigsaw->getDestinationPath();
-
             // Create the PDF...
             return Browsershot::html($html)
                               ->showBackground()
-                              ->save($destination . '/build.pdf');
+                              ->save($jigsaw->getDestinationPath() . '/build.pdf');
         }
     }
 
