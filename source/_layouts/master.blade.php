@@ -8,28 +8,28 @@
         <link rel="stylesheet" href="{{ mix('css/app.css', 'assets/build') }}">
     </head>
     <body>
-        @hasSection('cover')
-            <section class="h-screen bg-blue-500 text-white pt-12 pb-6 px-8">
-                <div class="max-w-2xl mx-auto">
+        <div class="h-screen flex flex-col">
+            @hasSection('cover')
+                <section class="flex-1 bg-blue-500 text-white pt-12 pb-6 px-12">
                     @yield('cover')
-                </div>
-            </section>
-        @endif
+                </section>
+            @else
+                @hasSection('header')
+                    <header class="pbb-always bg-blue-500 text-white pt-12 pb-6 px-12">
+                        @yield('header')
+                    </header>
+                @endif
 
-        @hasSection('header')
-            <header class="pbb-always bg-blue-500 text-white pt-12 pb-6 px-8">
-                <div class="max-w-2xl mx-auto">
-                    @yield('header')
-                </div>
-            </header>
-        @endif
+                @hasSection('body')
+                    <div class="flex-1 border-b mx-12">
+                        <div class="py-8">
+                            @yield('body')
+                        </div>
+                    </div>
+                @endif
+            @endif
 
-        @hasSection('body')
-            <div class="p-8">
-                <div class="max-w-2xl mx-auto">
-                    @yield('body')
-                </div>
-            </div>
-        @endif
+            @include('_partials.footer')
+        </div>
     </body>
 </html>
