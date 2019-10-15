@@ -40,9 +40,9 @@ class GeneratePDF
 
             // Fetch the inner HTML from each page...
             $pages = $pages->map(function($page) use($jigsaw) {
-                $this->dom->load($jigsaw->readOutputFile($page));
-
-                return $this->dom->find('body')->innerHtml;
+                return $this->dom->load($jigsaw->readOutputFile($page))
+                                 ->find('body')
+                                 ->innerHtml;
             });
 
             // Append the HTMl from pages to the output...
