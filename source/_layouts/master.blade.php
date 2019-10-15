@@ -7,27 +7,29 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="{{ mix('css/app.css', 'assets/build') }}">
     </head>
-    <body class="font-sans antialiased">
+    <body>
         @hasSection('cover')
-            <header class="bg-blue-500 text-white pt-12 pb-6 px-8 h-screen">
+            <section class="h-screen bg-blue-500 text-white pt-12 pb-6 px-8">
                 <div class="max-w-2xl mx-auto">
                     @yield('cover')
                 </div>
-            </header>
+            </section>
         @endif
 
         @hasSection('header')
-            <header class="bg-blue-500 text-white pt-12 pb-6 px-8">
+            <header class="pbb-always bg-blue-500 text-white pt-12 pb-6 px-8">
                 <div class="max-w-2xl mx-auto">
                     @yield('header')
                 </div>
             </header>
         @endif
 
-        <div class="p-8">
-            <div class="max-w-2xl mx-auto">
-                @yield('body')
+        @hasSection('body')
+            <div class="p-8">
+                <div class="max-w-2xl mx-auto">
+                    @yield('body')
+                </div>
             </div>
-        </div>
+        @endif
     </body>
 </html>
