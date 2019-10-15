@@ -29,12 +29,29 @@ class GeneratePDF
         // If we have pages...
         if($pages->count())
         {
+            // Get the head from the first page...
+            $this->dom->load($jigsaw->readOutputFile($pages->first()));
+
+            // Prepare the HTML...
+            $html = '<!DOCTYPE html>';
+            $html .= '<html lang="en">';
+            $html .= '<head>'. $this->dom->find('head')->innerHtml .'</head>';
+
             // Fetch the inner HTML from each page...
-            $html = $pages->map(function($page) use ($jigsaw) {
+            $pages = $pages->map(function($page) use($jigsaw) {
                 $this->dom->load($jigsaw->readOutputFile($page));
 
                 return $this->dom->find('body')->innerHtml;
             });
+
+            // Append the HTMl from pages to the output...
+            $html .= implode('', $pages->all());
+
+            // Close off the output...
+            $html .= '</body></html>';
+
+            // Replacing asset path to be relative to PDF
+            $html = preg_replace('/\"\/assets*/', '"./assets', $html);
 
             // Prepare the destination...
             $destination = $jigsaw->getDestinationPath();
@@ -42,7 +59,7 @@ class GeneratePDF
             // Create a new PDF and implode the HTML from the collection...
             $pdf = new Dompdf();
             $pdf->setBasePath($destination);
-            $pdf->loadHtml(implode('', $html->all()));
+            $pdf->loadHtml($html);
             $pdf->render();
 
             // Save the PDF...
