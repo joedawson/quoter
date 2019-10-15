@@ -2,9 +2,10 @@
 
 namespace App\Listeners;
 
-use Dompdf\Dompdf;
 use TightenCo\Jigsaw\Jigsaw;
+
 use PHPHtmlParser\Dom;
+use Spatie\Browsershot\Browsershot;
 
 class GeneratePDF
 {
@@ -50,20 +51,13 @@ class GeneratePDF
             // Close off the output...
             $html .= '</body></html>';
 
-            // Replacing asset path to be relative to PDF
-            $html = preg_replace('/\"\/assets*/', '"./assets', $html);
-
             // Prepare the destination...
             $destination = $jigsaw->getDestinationPath();
 
-            // Create a new PDF and implode the HTML from the collection...
-            $pdf = new Dompdf();
-            $pdf->setBasePath($destination);
-            $pdf->loadHtml($html);
-            $pdf->render();
-
-            // Save the PDF...
-            return file_put_contents($destination . '/build.pdf', $pdf->output());
+            // Create the PDF...
+            return Browsershot::html($html)
+                              ->showBackground()
+                              ->save($destination . '/build.pdf');
         }
     }
 
