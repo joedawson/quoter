@@ -10,12 +10,12 @@
     <body>
         <div class="h-screen flex flex-col">
             @hasSection('cover')
-                <section class="flex-1 bg-blue-500 text-white pt-12 pb-6 px-12">
+                <section class="cover">
                     @yield('cover')
                 </section>
             @else
                 @hasSection('header')
-                    <header class="pbb-always bg-blue-500 text-white pt-12 pb-6 px-12">
+                    <header class="bg-blue-500 text-white pt-12 pb-6 px-12">
                         @yield('header')
                     </header>
                 @endif
